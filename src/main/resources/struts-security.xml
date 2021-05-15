@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- Déclaration des filtres -->
+	<filters>
+		<filter name="exception"
+			class="com.fr.struts.plugins.security.core.filter.BasicExceptionFilter" />
+		<filter name="authentication"
+			class="com.fr.struts.plugins.security.core.filter.BasicAuthenticationFilter" />
+		<filter name="permission"
+			class="com.fr.struts.plugins.security.acl.filter.AclPermissionFilter" />
+	</filters>
+
+	<!-- Pile d'exécution -->
+	<filter-stack>
+		<filter-reference name="exception" />
+		<filter-reference name="authentication" />
+		<filter-reference name="permission" />
+	</filter-stack>
+
+	<!-- Mapping des exceptions à intercepter -->
+	<exception-mappings>
+		<exception result="unauthorized" status="401"
+			class="com.fr.struts.plugins.security.core.exception.UnauthorizedException" />
+		<exception result="forbidden" status="403"
+			class="com.fr.struts.plugins.security.core.exception.ForbiddenException" />
+	</exception-mappings>
+
+</configuration>
